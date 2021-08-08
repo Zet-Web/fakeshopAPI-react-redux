@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+// import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
 import './App.css';
+import ProductListing from './components/product-list/productListing';
+import Login from './components/login/login';
+import ProductDetails from './components/product-detail/productDetails';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Router>
+        <Header />
+        <Switch>
+          <Route path='/' exact component={ProductListing} />
+          <Route path='/product/:productId' exact component={ProductDetails} />
+          <Route>404 not found</Route>
+        </Switch>
+      </Router>
     </div>
+    /*  <Fragment>
+
+      <Switch>
+        <Route path='/login'>
+          <Login />
+        </Route>
+        <Route path='/products'>
+          <ProductListing />
+        </Route>
+      </Switch>
+    </Fragment>*/
   );
 }
 
